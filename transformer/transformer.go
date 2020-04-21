@@ -10,7 +10,7 @@ import (
 // TransformToMarkdown transform alertmanager notification to dingtalk markdow message
 func TransformToMarkdown(notification model.Notification) (markdown *model.DingTalkMarkdown, robotURL string, err error) {
 
-//	groupKey := notification.GroupKey
+	//groupKey := notification.GroupKey
 	status := notification.Status
 
 	annotations := notification.CommonAnnotations
@@ -19,7 +19,7 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	var buffer bytes.Buffer
 
 //	buffer.WriteString(fmt.Sprintf("### 通知组%s(当前状态:%s) \n", groupKey, status))
-	buffer.WriteString(fmt.Sprintf("### 告警通知: \n"))
+	buffer.WriteString(fmt.Sprintf("### 告警通知: \n\n"))
 
 //	buffer.WriteString(fmt.Sprintf("#### 告警项:\n"))
 
@@ -29,7 +29,7 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 		buffer.WriteString(fmt.Sprintf("##### 告警名称: %s\n", annotations["summary"]))
 		buffer.WriteString(fmt.Sprintf("##### 告警状态: %s\n", status))
 		buffer.WriteString(fmt.Sprintf("##### 告警详情：%s\n", annotations["description"]))
-		buffer.WriteString(fmt.Sprintf("\n> 开始时间：%s\n", alert.StartsAt.Format("15:04:05")))
+		buffer.WriteString(fmt.Sprintf("##### 告警时间：%s\n", alert.StartsAt.Format("15:04:05")))
 	}
 
 	markdown = &model.DingTalkMarkdown{
