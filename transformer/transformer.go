@@ -19,14 +19,14 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	var buffer bytes.Buffer
 
 //	buffer.WriteString(fmt.Sprintf("### 通知组%s(当前状态:%s) \n", groupKey, status))
-	buffer.WriteString(fmt.Sprintf("### 告警通知: \n\n"))
+	buffer.WriteString(fmt.Sprintf("### 告警通知: \n"))
 
 //	buffer.WriteString(fmt.Sprintf("#### 告警项:\n"))
 
 	for _, alert := range notification.Alerts {
 		annotations := alert.Annotations
 //		buffer.WriteString(fmt.Sprintf("##### %s\n > %s\n", annotations["summary"], annotations["description"]))
-		buffer.WriteString(fmt.Sprintf("#### 告警名称: %s\n", annotations["summary"]))
+		buffer.WriteString(fmt.Sprintf("\n#### 告警名称: %s\n", annotations["summary"]))
 		buffer.WriteString(fmt.Sprintf("#### 告警状态: %s\n", status))
 		buffer.WriteString(fmt.Sprintf("#### 告警详情：%s\n", annotations["description"]))
 		buffer.WriteString(fmt.Sprintf("#### 告警时间：%s\n", alert.StartsAt.Format("15:04:05")))
