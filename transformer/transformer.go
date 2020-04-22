@@ -46,5 +46,5 @@ func TransformToMarkdown(notification model.Notification,alert1 model.Alert) (ma
 		},
 	}
 
-	return notification alert1
+	return
 }
