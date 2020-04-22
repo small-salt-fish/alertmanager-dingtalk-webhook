@@ -7,8 +7,6 @@ import (
 	"github.com/small-salt-fish/alertmanager-dingtalk-webhook/model"
 )
 
-var alerts model.Alert
-
 // TransformToMarkdown transform alertmanager notification to dingtalk markdow message
 func TransformToMarkdown(notification model.Notification) (markdown *model.DingTalkMarkdown, robotURL string, err error) {
 
