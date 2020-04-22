@@ -14,7 +14,7 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 
 	//groupKey := notification.GroupKey
 	status := notification.Status
-	labels := notification.GroupLabels
+	labels := notification.CommonLabels
 
 
 	annotations := notification.CommonAnnotations
