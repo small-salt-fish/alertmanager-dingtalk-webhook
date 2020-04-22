@@ -31,6 +31,7 @@ func main() {
 	router := gin.Default()
 	router.POST("/webhook", func(c *gin.Context) {
 		var notification model.Notification
+		var labels model.Alert
 
 		err := c.BindJSON(&notification)
 

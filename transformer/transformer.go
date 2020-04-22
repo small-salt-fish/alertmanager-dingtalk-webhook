@@ -8,11 +8,10 @@ import (
 )
 
 // TransformToMarkdown transform alertmanager notification to dingtalk markdow message
-func TransformToMarkdown(notification model.Notification,alert1 model.Alert) (markdown *model.DingTalkMarkdown, robotURL string, err error) {
+func TransformToMarkdown(notification model.Notification) (markdown *model.DingTalkMarkdown, robotURL string, err error) {
 
 	//groupKey := notification.GroupKey
 	status := notification.Status
-	labels := alert1.Labels
 
 	annotations := notification.CommonAnnotations
 	robotURL = annotations["dingtalkRobot"]
