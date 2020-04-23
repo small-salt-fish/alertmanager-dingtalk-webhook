@@ -35,7 +35,7 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 		buffer.WriteString(fmt.Sprintf("+ 告警级别: %s\n", labels["severity"]))
 		buffer.WriteString(fmt.Sprintf("+ 告警时间: %s\n", alert.StartsAt.Format("15:04:05")))
 		buffer.WriteString(fmt.Sprintf("+ 告警详情: %s\n", annotations["description"]))
-		buffer.WriteString(fmt.Sprintf("+ 告警地址: [链接详情](%s)\n\n", url))
+		buffer.WriteString(fmt.Sprintf("+ 告警地址: [链接详情](%s)\n", url))
 	}
 
 	markdown = &model.DingTalkMarkdown{
