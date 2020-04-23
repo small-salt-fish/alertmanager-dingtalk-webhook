@@ -22,7 +22,7 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	var buffer bytes.Buffer
 
 //	buffer.WriteString(fmt.Sprintf("### 通知组%s(当前状态:%s) \n", groupKey, status))
-	buffer.WriteString(fmt.Sprintf("### 【status】告警通知: \n"))
+	buffer.WriteString(fmt.Sprintf("### 【%s】告警通知: \n",status))
 
 //	buffer.WriteString(fmt.Sprintf("#### 告警项:\n"))
 
