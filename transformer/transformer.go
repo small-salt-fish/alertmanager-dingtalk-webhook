@@ -13,6 +13,7 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	//groupKey := notification.GroupKey
 	status := notification.Status
 	labels := notification.CommonLabels
+	url := notification.ExternalURL
 
 
 	annotations := notification.CommonAnnotations
@@ -34,6 +35,7 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 		buffer.WriteString(fmt.Sprintf("+ 告警级别: %s\n", labels["severity"]))
 		buffer.WriteString(fmt.Sprintf("+ 告警时间: %s\n", alert.StartsAt.Format("15:04:05")))
 		buffer.WriteString(fmt.Sprintf("+ 告警详情: %s", annotations["description"]))
+		buffer.WriteString(fmt.Sprintf("+ 告警地址: [链接详情](%s)", url))
 	}
 
 	markdown = &model.DingTalkMarkdown{
