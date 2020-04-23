@@ -28,7 +28,7 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	for _, alert := range notification.Alerts {
 		annotations := alert.Annotations
 //		buffer.WriteString(fmt.Sprintf("##### %s\n > %s\n", annotations["summary"], annotations["description"]))
-		buffer.WriteString(fmt.Sprintf("\n####告警名称: %s\n", annotations["summary"]))
+		buffer.WriteString(fmt.Sprintf("####告警名称: %s\n", annotations["summary"]))
 		buffer.WriteString(fmt.Sprintf("#####告警状态: %s\n", status))
 		buffer.WriteString(fmt.Sprintf("#####告警实例: %s\n", labels["instance"]))
 		buffer.WriteString(fmt.Sprintf("#####告警级别: %s\n", labels["severity"]))
