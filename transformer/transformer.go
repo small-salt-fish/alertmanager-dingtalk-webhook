@@ -28,12 +28,12 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	for _, alert := range notification.Alerts {
 		annotations := alert.Annotations
 //		buffer.WriteString(fmt.Sprintf("##### %s\n > %s\n", annotations["summary"], annotations["description"]))
-		buffer.WriteString(fmt.Sprintf("##### 告警名称: %s\n", annotations["summary"]))
-		buffer.WriteString(fmt.Sprintf("##### 告警状态: %s\n", status))
-		buffer.WriteString(fmt.Sprintf("##### 告警实例: %s\n", labels["instance"]))
-		buffer.WriteString(fmt.Sprintf("##### 告警级别: %s\n", labels["severity"]))
-		buffer.WriteString(fmt.Sprintf("##### 告警详情：%s\n", annotations["description"]))
-		buffer.WriteString(fmt.Sprintf("##### 告警时间：%s", alert.StartsAt.Format("15:04:05")))
+		buffer.WriteString(fmt.Sprintf("+ 告警名称: %s\n", annotations["summary"]))
+		buffer.WriteString(fmt.Sprintf("+ 告警状态: %s\n", status))
+		buffer.WriteString(fmt.Sprintf("+ 告警实例: %s\n", labels["instance"]))
+		buffer.WriteString(fmt.Sprintf("+ 告警级别: %s\n", labels["severity"]))
+		buffer.WriteString(fmt.Sprintf("+ 告警详情：%s\n", annotations["description"]))
+		buffer.WriteString(fmt.Sprintf("+ 告警时间：%s", alert.StartsAt.Format("15:04:05")))
 	}
 
 	markdown = &model.DingTalkMarkdown{
