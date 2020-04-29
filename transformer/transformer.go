@@ -22,14 +22,13 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	var buffer bytes.Buffer
 
 //	buffer.WriteString(fmt.Sprintf("### 通知组%s(当前状态:%s) \n", groupKey, status))
-	buffer.WriteString(fmt.Sprintf("### 【%s】告警通知: \n",status))
+	buffer.WriteString(fmt.Sprintf("### 【%s】 %s 告警通知: \n",status,labels["project"]))
 
 //	buffer.WriteString(fmt.Sprintf("#### 告警项:\n"))
 
 	for _, alert := range notification.Alerts {
 		annotations := alert.Annotations
 //		buffer.WriteString(fmt.Sprintf("##### %s\n > %s\n", annotations["summary"], annotations["description"]))
-        buffer.WriteString(fmt.Sprintf("+ 告警项目: %s\n", labels["project"]))
 		buffer.WriteString(fmt.Sprintf("+ 告警名称: %s\n", annotations["summary"]))
 		buffer.WriteString(fmt.Sprintf("+ 告警状态: %s\n", status))
 		buffer.WriteString(fmt.Sprintf("+ 告警实例: %s\n", labels["instance"]))
