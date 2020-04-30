@@ -49,5 +49,5 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"message": "send to dingtalk successful!"})
 
 	})
-	router.Run(":38080")
+	router.Run("0.0.0.0:38080")
 }
