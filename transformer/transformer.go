@@ -15,7 +15,6 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	labels := notification.CommonLabels
 	url := notification.ExternalURL
 
-
 	annotations := notification.CommonAnnotations
 	robotURL = annotations["dingtalkRobot"]
 
@@ -42,7 +41,7 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 		MsgType: "markdown",
 		Markdown: &model.Markdown{
 //			Title: fmt.Sprintf("通知组：%s(当前状态:%s)", groupKey, status),
-			Title: fmt.Sprintf(labels["project"],annotations["summary"]),
+			Title: fmt.Sprintf(labels["project"]+annotations["summary"]),
 			Text:  buffer.String(),
 		},
 		At: &model.At{
