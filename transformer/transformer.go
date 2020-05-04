@@ -11,9 +11,16 @@ import (
 func TransformToMarkdown(notification model.Notification) (markdown *model.DingTalkMarkdown, robotURL string, err error) {
 
 	//groupKey := notification.GroupKey
-	status := notification.Status
+	var status = notification.Status
 	labels := notification.CommonLabels
 	url := notification.ExternalURL
+	
+	if status == "firing"{
+		status = "告警"
+	} else {
+		status = "恢复"
+	}
+
 
 	annotations := notification.CommonAnnotations
 	robotURL = annotations["dingtalkRobot"]
