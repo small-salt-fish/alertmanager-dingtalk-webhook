@@ -16,9 +16,9 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	url := notification.ExternalURL
 	
 	if status == "firing"{
-		status = "告警"
+		status = "<font color=#FF0000>告警</font>"
 	} else {
-		status = "恢复"
+		status = "<font color=#00FF00>恢复</font>"
 	}
 
 
@@ -28,20 +28,20 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	var buffer bytes.Buffer
 
 //	buffer.WriteString(fmt.Sprintf("### 通知组%s(当前状态:%s) \n", groupKey, status))
-	buffer.WriteString(fmt.Sprintf("## 【%s】 %s 告警通知: \n",status,labels["project"]))
+	buffer.WriteString(fmt.Sprintf("## [%s] %s 告警通知: \n",status,labels["project"]))
 
 //	buffer.WriteString(fmt.Sprintf("#### 告警项:\n"))
 
 	for _, alert := range notification.Alerts {
 		annotations := alert.Annotations
 //		buffer.WriteString(fmt.Sprintf("##### %s\n > %s\n", annotations["summary"], annotations["description"]))
-		buffer.WriteString(fmt.Sprintf("+ 告警名称: %s\n", annotations["summary"]))
-		buffer.WriteString(fmt.Sprintf("+ 告警状态: %s\n", status))
-		buffer.WriteString(fmt.Sprintf("+ 告警实例: %s\n", labels["instance"]))
-		buffer.WriteString(fmt.Sprintf("+ 告警级别: %s\n", labels["severity"]))
-		buffer.WriteString(fmt.Sprintf("+ 告警时间: %s\n", alert.StartsAt.Format("15:04:05")))
-		buffer.WriteString(fmt.Sprintf("+ 告警详情: %s\n", annotations["description"]))
-		buffer.WriteString(fmt.Sprintf("+ 告警地址: [链接详情](%s)\n", url))
+		buffer.WriteString(fmt.Sprintf("> 告警名称: %s\n", annotations["summary"]))
+		buffer.WriteString(fmt.Sprintf("> 告警状态: %s\n", status))
+		buffer.WriteString(fmt.Sprintf("> 告警实例: %s\n", labels["instance"]))
+		buffer.WriteString(fmt.Sprintf("> 告警级别: %s\n", labels["severity"]))
+		buffer.WriteString(fmt.Sprintf("> 告警时间: %s\n", alert.StartsAt.Format("15:04:05")))
+		buffer.WriteString(fmt.Sprintf("> 告警详情: %s\n", annotations["description"]))
+		buffer.WriteString(fmt.Sprintf("> 告警地址: [链接详情](%s)\n", url))
 	}
 
 	markdown = &model.DingTalkMarkdown{
