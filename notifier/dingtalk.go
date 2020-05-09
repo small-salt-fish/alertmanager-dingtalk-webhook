@@ -23,7 +23,7 @@ func Send(notification model.Notification, defaultRobot string) (err error) {
 	if err != nil {
 		return
 	}
-	fmt.Sprint(data)
+	fmt.Println(data)
 
 	var dingTalkRobotURL string
 
