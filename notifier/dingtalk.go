@@ -23,7 +23,7 @@ func Send(notification model.Notification, defaultRobot string) (err error) {
 	if err != nil {
 		return
 	}
-	fmt.Println(data)
+
 
 	var dingTalkRobotURL string
 
@@ -41,6 +41,12 @@ func Send(notification model.Notification, defaultRobot string) (err error) {
 		"POST",
 		dingTalkRobotURL,
 		bytes.NewBuffer(data))
+	
+	fmt.Println("POST")
+	fmt.Println(dingTalkRobotURL)
+	fmt.Println(bytes.NewBuffer(data))
+	fmt.Println(req)
+
 
 	if err != nil {
 		fmt.Println("dingtalk robot url not found ignore:")
