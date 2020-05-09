@@ -14,7 +14,6 @@ import (
 func Send(notification model.Notification, defaultRobot string) (err error) {
 
 	markdown, robotURL, err := transformer.TransformToMarkdown(notification)
-	fmt.Println(markdown)
     
 	if err != nil {
 		return
@@ -24,6 +23,7 @@ func Send(notification model.Notification, defaultRobot string) (err error) {
 	if err != nil {
 		return
 	}
+	fmt.Sprint(data)
 
 	var dingTalkRobotURL string
 
