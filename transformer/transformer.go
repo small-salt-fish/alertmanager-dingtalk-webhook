@@ -3,14 +3,12 @@ package transformer
 import (
 	"bytes"
 	"fmt"
-
+	"reflect"
 	"github.com/small-salt-fish/alertmanager-dingtalk-webhook/model"
 )
 
-// TransformToMarkdown transform alertmanager notification to dingtalk markdow message
 func TransformToMarkdown(notification model.Notification) (markdown *model.DingTalkMarkdown, robotURL string, err error) {
 
-	//groupKey := notification.GroupKey
 	var status = notification.Status
 	labels := notification.CommonLabels
 	url := notification.ExternalURL
@@ -27,15 +25,12 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 
 	var buffer bytes.Buffer
 
-//	buffer.WriteString(fmt.Sprintf("### 通知组%s(当前状态:%s) \n", groupKey, status))
 	buffer.WriteString(fmt.Sprintf("### 【%s】 %s 告警通知: \n",status,labels["project"]))
-
-//	buffer.WriteString(fmt.Sprintf("#### 告警项:\n"))
 
 	for _, alert := range notification.Alerts {
 		annotations := alert.Annotations
-//		buffer.WriteString(fmt.Sprintf("##### %s\n > %s\n", annotations["summary"], annotations["description"]))
 		buffer.WriteString(fmt.Sprintf("> 告警名称: %s \n", annotations["summary"]))
+
 		buffer.WriteString(fmt.Sprintf("\n > 告警状态: %s \n", status))
 		buffer.WriteString(fmt.Sprintf("\n > 告警实例: %s \n", labels["instance"]))
 		buffer.WriteString(fmt.Sprintf("\n > 告警级别: %s \n", labels["severity"]))
@@ -47,7 +42,6 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	markdown = &model.DingTalkMarkdown{
 		MsgType: "markdown",
 		Markdown: &model.Markdown{
-//			Title: fmt.Sprintf("通知组：%s(当前状态:%s)", groupKey, status),
 			Title: fmt.Sprintf(labels["project"]+" "+annotations["summary"]),
 			Text:  buffer.String(),
 		},
@@ -55,6 +49,8 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 			IsAtAll: false,
 		},
 	}
+	println(reflect.TypeOf(markdown).Name())
 
 	return
 }
+
