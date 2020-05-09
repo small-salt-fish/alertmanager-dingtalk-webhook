@@ -3,7 +3,6 @@ package transformer
 import (
 	"bytes"
 	"fmt"
-	"reflect"
 	"github.com/small-salt-fish/alertmanager-dingtalk-webhook/model"
 )
 
@@ -49,8 +48,6 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 			IsAtAll: false,
 		},
 	}
-	println(reflect.TypeOf(markdown).Name())
-
 	return
 }
 
