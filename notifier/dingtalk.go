@@ -14,7 +14,7 @@ import (
 func Send(notification model.Notification, defaultRobot string) (err error) {
 
 	markdown, robotURL, err := transformer.TransformToMarkdown(notification)
-	fmt.Println(markdown,robotURL)
+	fmt.Sprintf(markdown)
     
 	if err != nil {
 		return
