@@ -10,6 +10,7 @@ import (
 func TransformToMarkdown(notification model.Notification) (markdown *model.DingTalkMarkdown, robotURL string, err error) {
 
 	var status = notification.Status
+	var status_head = notification.Status
 	labels := notification.CommonLabels
 	url := notification.ExternalURL
 	
