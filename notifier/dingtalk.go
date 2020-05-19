@@ -43,7 +43,7 @@ func Send(notification model.Notification, defaultRobot string) (err error) {
 		bytes.NewBuffer(data))
 
 	fmt.Println("reqStart")
-	fmt.Println(req)
+	fmt.Println(data)
 	fmt.Println("reqEnd")
 
 	if err != nil {

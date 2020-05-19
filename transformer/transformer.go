@@ -41,7 +41,7 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	markdown = &model.DingTalkMarkdown{
 		MsgType: "markdown",
 		Markdown: &model.Markdown{
-			Title: fmt.Sprintf(labels["project"]+" "+annotations["summary"]),
+			Title: fmt.Sprintf(status+" "+labels["project"]+" "+annotations["summary"]),
 			Text:  buffer.String(),
 		},
 		At: &model.At{
