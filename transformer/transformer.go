@@ -16,10 +16,10 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.DingT
 	
 	if status == "firing"{
 		status = "<font color=#FF0000>告警</font>"
-		status_head == "告警"
+		status_head = "告警"
 	} else {
 		status = "<font color=#008B00>恢复</font>"
-		status_head == "恢复"
+		status_head = "恢复"
 	}
 
 
